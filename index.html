@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStorage Form</title>
+</head>
+<body>
+    <h2>Save Form data to local storage</h2>
+    <form id="userForm">
+        <label>Name:</label>
+        <input type="text" placeholder="Enter Your Name" id="name"><br><br>
+        <label>Email:</label>
+        <input type="email" placeholder="Enter Your email" id="email"><br><br>
+        <button type="submit">Save</button>
+    </form>
+    <script>
+        const form=document.getElementById("userForm");
+        const name=document.getElementById("name");
+        const email=document.getElementById("email");
+        window.addEventListener("DOMContentLoaded",()=>{
+            const savedName=localStorage.getItem("name");
+            const savedEmail=localStorage.getItem("email");
+            if(savedName) name.value=savedName;
+            if(savedEmail) email.value=savedEmail;
+        })
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+            const nameInput=name.value.trim();
+            const emailInput=email.value.trim();
+            localStorage.setItem("name",nameInput);
+            localStorage.setItem("email",emailInput);
+            alert("Data saved to local Storage");
+        })
+
+    </script>
+</body>
+</html>
